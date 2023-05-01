@@ -16,3 +16,11 @@ div{
   margin: 5px;
   padding:5px;	
 }
+#bigbox{
+  background-color: lightgray;
+}
+img {
+  margin:  0px;
+  padding:10px;
+  background-color: lightgray;
+}
