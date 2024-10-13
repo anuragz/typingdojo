@@ -1,17 +1,232 @@
 <!DOCTYPE html>
 <head>
-<title>English Typing</title>
-<link rel="stylesheet" type="text/css" href="stylesheet/typingdojo.css">
+<title>Practice English Typing</title>
+<style>
+body{
+	background-color: gray;
+	margin:auto;
+  	padding:auto;
+}
+span:hover{
+  cursor: pointer;
+}
+td{
+	background-color: lightgray;
+}
+#rightbox{  
+	margin:0px auto;
+	padding:10px auto;
+	text-align:center;
+}
+#leftbox{  
+	margin:0px auto;
+	padding:10px auto;
+	text-align:center;
+}
+h1 {
+  margin:0px;
+  padding:10px;
+  background-color: lightgray;
+  text-align:center;
+}
+h2{
+	margin:0px auto;
+	padding:10px auto;
+	text-align:center;
+}
+
+#screen {
+  margin: 0px;
+  padding:10px;
+  background-color: lightgray;
+  font-size:55px;
+  text-align:center;
+}
+#bigbox{
+  background-color: lightgray;
+}
+#leftbox{
+  background-color: lightgray;
+}
+#rightbox{
+  background-color: lightgray;
+}
+img {
+  margin:  0px;
+  padding:10px;
+  background-color: lightgray;
+}
+table { 
+	width:80%;
+    margin: 25px auto;
+    padding: auto;
+}
+</style>
 </head>
 
 <body>
-	<h1>Typing Practise Lessons</h1>
-	<br>
+	<table border=0px>
+	<tr>
+	<td><div id="leftbox">
+	<span id="speakerspan" onclick="togglespeaker()" style='font-size:50px;'>&#128266;</span>
+	</div></td>
+	
+	<td>
+	<h1>Typing Practice Lesson: <span id="lessonNumber">1</span></h1>
+	<h2>Time spent <span id="timer"></span> seconds</h2>
 	<div id="bigbox">
-	<ul>
-	<li><a href="typingdojo-keyboard.html">Lesson 1: Keyboard Layout</a></li>
-	<li><a href="typingdojo-paragraph.html">Lesson 2: Write a paragraph</a></li>
-	<li><a href="typingdojo-java-keywords.html">Lesson 3: Java Keywords and special chars</a></li>
-	</ul>
+		<div id="screen">
+		</div>
 	</div>
+	</td>
+	<td><div id ="rightbox">
+	<span onclick="nextPage()" style='font-size:50px;'>&#8594;</span><br>
+	<span onclick="refresh()" style='font-size:50px;'>&#8635;</span><br>
+	<span onclick="backPage()" style='font-size:50px;'>&#8592;</span>
+	</div></td>
+	</tr>
+	</table>
+	
+<script type="text/javascript">
+var seconds=0;
+var speakeron=true;
+document.getElementById("timer").innerHTML=seconds;
+function autoRefreshTimer() {
+	seconds++;
+	document.getElementById("timer").innerHTML=seconds;
+}
+setInterval('autoRefreshTimer()', 1000);
+
+const lessons = ["a b c d e f g h i j k l m n o p q r s t u v w x y z", "z y x w v u t s r q p o n m l k j i h g f e d c b a",
+	"The quick brown fox jumps over the lazy dog.",
+	"aqz swx dec frv gtb aqz swx dec frv gtb aqz swx dec frv gtb",
+	"hyn jum ki, lo. p;/ hyn jum ki, lo. p;/ hyn jum ki, lo. p;/",
+	"frvgtb frvgtb frvgtb frvgtb frvgtb frvgtb frvgtb frvgtb frvgtb frvgtb frvgtb frvgtb frvgtb frvgtb frvgtb frvgtb frvgtb frvgtb frvgtb frvgtb frvgtb",
+	"jumhyn jumhyn jumhyn jumhyn jumhyn jumhyn jumhyn jumhyn jumhyn jumhyn jumhyn jumhyn jumhyn jumhyn jumhyn jumhyn jumhyn jumhyn jumhyn jumhyn jumhyn",
+	"frvgtb jumhyn frvgtb jumhyn frvgtb jumhyn frvgtb jumhyn frvgtb jumhyn frvgtb jumhyn frvgtb jumhyn frvgtb jumhyn frvgtb jumhyn frvgtb jumhyn",
+	"aq1 sw2 de3 fr4 gt5 hy6 ju7 ki8 lo9 ;p0 aq1 sw2 de3 fr4 gt5 hy6 ju7 ki8 lo9 ;p0 aq1 sw2 de3 fr4 gt5 hy6 ju7 ki8 lo9 ;p0 aq1 sw2 de3 fr4 gt5 hy6 ju7 ki8 lo9 ;p0",
+	"At as am an art ant ark ask ape all aunt awake awoke about", 
+	"be baa but bit bet bum bore burr bull built", 
+	"car cad cat cot cool cook cert cart curb cope cold cull", 
+	"dam dim dip dill door dull daft dark depth delf done dirt",  
+	"eve ear elf eel eat ever every earl early event enter evoke envelope", 
+	"fig far fop fin fat fill fear feel farm fell full fuller filler fungus", 
+	"gas gun gap got get gore gentle gilt guilt glaze glare gloss glint", 
+	"he ha ho hum hot him her here hope heart herd hint hunt", 
+	"in is if ink ill ire ilk indian indigo indent indifferent internal", 
+	"jug jar jazz just jump jack jill jell jelly jolly jumped jammed", 
+	"kill kart keep kick kerb knack kilt kip kipper knot knit knight", 
+	"lad lid led lore lump limp lamp lamb lute lure limber long linger lope", 
+	"moo man mar map mope mint mull mere meant more most", 
+	"no nap nag nut nip nest next nerd near number nipper natter", 
+	"ore old owe oat ode open otter outer offer offering opening order", 
+	"pan par pin pad pet pill pink pate paste patter pillar pert pound pack", 
+	"quick quill quad quaint quack quota quilt quiet quite quieter", 
+	"ran rim rum rap rip role rode ripe rope rest resist rely relay", 
+	"sit sat sip sad sap silt salt same soap scrape scratch sketch", 
+	"tip top tap tat tore tear toil type test thread there their", 
+	"up us use ult under upper umber ubend useless user udder ulcer", 
+	"vat vet verb very vibe vice villa veer volley volt vibe voltage veteran", 
+	"was wet will wilt weld wore wear wean were whether where went", 
+	"xray xenophone xenon xerus xenia xray xenophone xenon xerus xenia", 
+	"yes yet yon yield yale your yourself yearling youth young", 
+	"zebra zip zipper zinc zeyphr zaffir zebra zip zipper zinc zeyphr zaffir",
+	"austerity authentication authority actuary anticipation aromatic ausoices ambience allowance", 
+	"biopsy breadcrumb benevolent barbecue bewilderment bombard brewery begotten benedictuine browned", 
+	"condonminium concrete constipation company corronorate chemical continuation cucumber commitment",  
+	"destroyed deployed diminished devloped deranged download delight definituve difficulty dreadful",  
+	"establishment enjoyment endeavour enduarance emphatic emnolism enterd extremely extended explanation", 
+	"filament findings fundamental far fetched fermentation fortify fallacy frequency flexibility",  
+	"generosity gymnasium gargantuan grievances greatness gratitude gregarious geometry genetics gladiator", 
+	"history historical harvesting household happenings headache hopefully horrendous happiness hilarity", 
+	"illustration illusion irrational irritation imminent industrious illuminatiom inherent immense immunity", 
+	"jamboree japonica jurisdication judgement judiciary justification jackass jerusalem jujube", 
+	"kicking kurdistan kitchen knowledge knowledgeable knighted kookaburra kingdom knickle knife", 
+	"latitude longitude loneliness lemonade lamentable linguistic leveller lumbago liberal listlessness", 
+	"momentum monstrosity muncipal mandated maximum minimum monster memorandum memories mosiac netwok", 
+	"numeral numerical non existent nanny nemesis nuclear necessity nonlinear nothing", 
+	"operation organisation organism offering oleander ominous owl optometrist ophthalmic orthopaedics", 
+	"purpose pursue principle preamble penetration philosophy philately participation physiology", 
+	"queue queen quorn quetionable quietly qualitatively quest quickly quantum qualification", 
+	"respectfully returned retured refusal referral renonunce romance requisite refinment remarkable", 
+	"satisfaction statistics several semantics successfully swelling swinging serenity swivel stretching", 
+	"tremble trinket terrain telescope telephone telepathy tarantula totalitarian termandous unlawful unfair",  
+	"unilateral uniform uranium unless universe underhand unbeatable unusual",  
+	"vivacious vigilante velvet versatile veracity vehicle venerable visionary validation verbose",  
+	"working wonderfull wondrous wilful wonderer wristwatch washing warmer willer wakefulness", 
+	"xylophene xray xenon xerox xylograph xylophene xray xenon xerox xylograph", 
+	"yard younger yearning yatch yearly yield yolk yoke yummy youth", 
+	"zenith zillion zucchini zest zero zoom zip zoo zigzag zilch zanzibar" 
+	];
+const lessonssize = lessons.reduce((acc) => acc + 1, 0);
+
+var lessonNumber=0;
+document.getElementById("lessonNumber").innerHTML=lessonNumber;
+
+
+var input="z y x w v u t s r q p o n m l k j i h g f e d c b a";
+var textarray=lessons.at(lessonNumber).split("");
+
+for(let e=currentindex=0;e<textarray.length;++e){
+	const g=textarray[e];
+	var iDiv=document.createElement("div");
+	iDiv.style.display="inline-block",
+	iDiv.style.margin="2px 0px 2px 0px",
+	iDiv.id=e," "==g?iDiv.innerHTML="&nbsp":iDiv.innerHTML=g,
+	document.getElementById("screen").appendChild(iDiv)
+}
+
+function loadContent(input){
+	//alert(input);
+	textarray=input.split("");
+	while (document.getElementById("screen").lastElementChild){
+		document.getElementById("screen").removeChild(document.getElementById("screen").lastElementChild);
+	 }
+	for(let e=currentindex=0;e<textarray.length;++e){
+		const g=textarray[e];
+		var iDiv=document.createElement("div");
+		iDiv.style.display="inline-block",
+		iDiv.style.margin="2px 0px 2px 0px",
+		iDiv.id=e," "==g?iDiv.innerHTML="&nbsp":iDiv.innerHTML=g,
+		document.getElementById("screen").appendChild(iDiv)
+	}
+	currentindex=0;
+}
+
+function refresh(){	
+	if(lessonNumber>=lessonssize){lessonNumber=0}
+	document.getElementById("lessonNumber").innerHTML=lessonNumber;
+	loadContent(lessons.at(lessonNumber));
+}
+
+function nextPage(){
+	lessonNumber++;
+	if(lessonNumber>=lessonssize){lessonNumber=0}
+	document.getElementById("lessonNumber").innerHTML=lessonNumber;
+	loadContent(lessons.at(lessonNumber));
+}
+
+function backPage(){
+	lessonNumber--;
+	if(lessonNumber<0){lessonNumber=lessonssize-1}
+	document.getElementById("lessonNumber").innerHTML=lessonNumber;
+	//location.reload();
+	loadContent(lessons.at(lessonNumber));
+}
+
+function togglespeaker(){
+	if(speakeron){
+		document.getElementById("speakerspan").innerHTML = "&#128263;";
+		speakeron=false;
+	}else{
+		document.getElementById("speakerspan").innerHTML = "&#128266;";
+		speakeron=true;
+	}
+}
+document.addEventListener("keypress",
+	function(e){
+		textarray[currentindex]!=e.key?document.getElementById(currentindex).style.backgroundColor="#FF0000":document.getElementById(currentindex).style.backgroundColor="#00FF66",
+		currentindex++
+});
+</script>
 </body>
