@@ -12,6 +12,8 @@ span:hover{
 }
 td{
 	background-color: lightgray;
+	margin:auto;
+  	padding:auto;
 }
 #rightbox{  
 	margin:0px auto;
@@ -28,11 +30,13 @@ h1 {
   padding:10px;
   background-color: lightgray;
   text-align:center;
+  font-size:50px;
 }
 h2{
 	margin:0px auto;
 	padding:10px auto;
 	text-align:center;
+	font-size:40px;
 }
 
 #screen {
@@ -52,38 +56,51 @@ h2{
   background-color: lightgray;
 }
 img {
-  margin:  0px;
-  padding:10px;
+  display:block;
+  margin-left: auto;
+  margin-right: auto;
   background-color: lightgray;
 }
 table { 
 	width:80%;
     margin: 25px auto;
     padding: auto;
+    border-spacing: 0px;
+    border:0px;
 }
 </style>
 </head>
 
 <body>
-	<table border=0px>
+	<table>
 	<tr>
 	<td><div id="leftbox">
+	<span onclick="goHome()" style='font-size:50px;'>&#127968;</span><br>
 	<span id="speakerspan" onclick="togglespeaker()" style='font-size:50px;'>&#128266;</span>
 	</div></td>
 	
 	<td>
 	<h1>Typing Practice Lesson: <span id="lessonNumber">1</span></h1>
 	<h2>Time spent <span id="timer"></span> seconds</h2>
-	<div id="bigbox">
-		<div id="screen">
-		</div>
-	</div>
 	</td>
 	<td><div id ="rightbox">
 	<span onclick="nextPage()" style='font-size:50px;'>&#8594;</span><br>
 	<span onclick="refresh()" style='font-size:50px;'>&#8635;</span><br>
 	<span onclick="backPage()" style='font-size:50px;'>&#8592;</span>
 	</div></td>
+	</tr>
+	<tr>
+	<td colspan=3>
+<div id="bigbox">
+		<div id="screen">
+		</div>
+	</div>
+	</td>
+	</tr>
+	<tr>
+	<td colspan=3>
+	<img src="img/KeyboardFingerPositions.png" alt="KeyboardFingerPositions">
+	</td>
 	</tr>
 	</table>
 	
@@ -202,6 +219,12 @@ function refresh(){
 function nextPage(){
 	lessonNumber++;
 	if(lessonNumber>=lessonssize){lessonNumber=0}
+	document.getElementById("lessonNumber").innerHTML=lessonNumber;
+	loadContent(lessons.at(lessonNumber));
+}
+
+function goHome(){
+	lessonNumber=0;
 	document.getElementById("lessonNumber").innerHTML=lessonNumber;
 	loadContent(lessons.at(lessonNumber));
 }
