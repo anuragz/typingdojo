@@ -278,8 +278,10 @@ function togglespeaker(){
 }
 document.addEventListener("keypress",
 	function(e){
+	if(null!=document.getElementById(currentindex)){
 		textarray[currentindex]!=e.key?document.getElementById(currentindex).style.backgroundColor="#FF0000":document.getElementById(currentindex).style.backgroundColor="#00FF66",
 		currentindex++;
+	}
 		if (e.keyCode === 13) {
             // Enter key is pressed
             refresh();
