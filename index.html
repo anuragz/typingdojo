@@ -10,6 +10,10 @@ body{
 span:hover{
   cursor: pointer;
 }
+
+span{
+  font-size:xx-large;
+}
 td{
 	background-color: lightgray;
 	margin:auto;
@@ -36,15 +40,25 @@ h2{
 	margin:0px auto;
 	padding:10px auto;
 	text-align:center;
-	font-size:40px;
+	font-size:xx-large;
+}
+
+#iconbar{
+  background-color: lightgray;
+  margin:0px auto;
+  padding:0px auto;
+  text-align:center;
+  border-top:1px dashed gray;
 }
 
 #screen {
   margin: 0px;
   padding:10px;
   background-color: lightgray;
-  font-size:55px;
+  font-size:xx-large;
   text-align:center;
+  border-top:1px dashed gray;
+  border-bottom:1px dashed gray;
 }
 #bigbox{
   background-color: lightgray;
@@ -74,21 +88,37 @@ table {
 <body>
 	<table>
 	<tr>
-	<td><div id="leftbox">
-	<span onclick="goHome()" style='font-size:50px;'>&#127968;</span><br>
-	<span id="speakerspan" onclick="togglespeaker()" style='font-size:50px;'>&#128266;</span>
-	</div></td>
+	<td><div id="leftbox"><!--  
+	<span onclick="goHome()" >&#127968;</span><br>
+	<span id="speakerspan" onclick="togglespeaker()" >&#128266;</span>
+	--></div></td>
 	
 	<td>
-	<h1>Typing Practice Lesson: <span id="lessonNumber">1</span></h1>
-	<h2>Time spent <span id="timer"></span> seconds</h2>
+	<h1>Typing Practice</h1>
+	<h2>Lesson: <span id="lessonNumber">1</span> &#8987; <span id="timer"></span> seconds</h2>
 	</td>
 	<td><div id ="rightbox">
-	<span onclick="nextPage()" style='font-size:50px;'>&#8594;</span><br>
-	<span onclick="refresh()" style='font-size:50px;'>&#8635;</span><br>
-	<span onclick="backPage()" style='font-size:50px;'>&#8592;</span>
-	</div></td>
+	<!-- <span onclick="nextPage()" >&#8594;</span><br>
+	<span onclick="refresh()" >&#8635;</span><br>
+	<span onclick="backPage()" >&#8592;</span>
+	--></div></td>
 	</tr>
+	
+	
+	<tr>
+	<td colspan=3>
+	<div id="iconbar">
+	<span onclick="goHome()" >&#127968;</span>
+	<span onclick="help()">&#128161;</span>	
+	<span id="speakerspan" onclick="togglespeaker()" >&#128266;</span>	
+	<span onclick="backPage()" >&#8592;</span>
+	<span onclick="refresh()" >&#8635;</span>
+	<span onclick="nextPage()" >&#8594;</span>
+	</div>
+	</td>
+	</tr>
+	
+	
 	<tr>
 	<td colspan=3>
 <div id="bigbox">
@@ -114,7 +144,7 @@ function autoRefreshTimer() {
 }
 setInterval('autoRefreshTimer()', 1000);
 
-const lessons = ["a b c d e f g h i j k l m n o p q r s t u v w x y z", "z y x w v u t s r q p o n m l k j i h g f e d c b a",
+const lessons = ["abcdefghijklmnopqrstuvwxyz", "zyxwvutsrqponmlkjihgfedcba",
 	"The quick brown fox jumps over the lazy dog.",
 	"aqz swx dec frv gtb aqz swx dec frv gtb aqz swx dec frv gtb",
 	"hyn jum ki, lo. p;/ hyn jum ki, lo. p;/ hyn jum ki, lo. p;/",
@@ -249,7 +279,16 @@ function togglespeaker(){
 document.addEventListener("keypress",
 	function(e){
 		textarray[currentindex]!=e.key?document.getElementById(currentindex).style.backgroundColor="#FF0000":document.getElementById(currentindex).style.backgroundColor="#00FF66",
-		currentindex++
+		currentindex++;
+		if (e.keyCode === 13) {
+            // Enter key is pressed
+            refresh();
+        }		
 });
+
+
+function help(){	
+	alert("Press home button to go to lesson 0. Press enter button to restart same lesson.");
+}
 </script>
 </body>
