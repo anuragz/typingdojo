@@ -2,6 +2,8 @@
 <head>
 <title>Practice English Typing</title>
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Questrial&display=swap');
+
 body{
 	background-color: gray;
 	margin:auto;
@@ -101,7 +103,6 @@ table {
 
 
 
-@import url('https://fonts.googleapis.com/css2?family=Questrial&display=swap');
 .keyboard { 
     --key_size: calc(100vw / 40) /* 60px; */;
     --keyboard_clr_background: rgb(201, 201, 201);
@@ -130,22 +131,15 @@ body{
     justify-content: center;
 }
 
-h1{
-    color: white;
-    font-size: calc(100vw / 25);
-    font-family: 'Questrial', sans-serif ;
-    text-shadow: 2px 2px 5px black;
-    margin-bottom: 20px;
-}
-
 .keyboard{
     display: grid;
     grid-template-columns: auto;
     grid-gap: calc(var(--key_size) / 2);
-    border-radius: calc(var(--key_size) / 5);
-    background-color: var(--keyboard_clr_background);
     padding: calc(var(--key_size) / 2);
-   /*  user-select: none;
+    /*  
+    border-radius: calc(var(--key_size) / 5);
+    background-color: var(--keyboard_clr_background);    
+	user-select: none;
     border: calc(var(--key_size) / 25) solid var(--key_clr_border);
     box-shadow: 0 0  calc(var(--key_size) / 10) calc(var(--key_size) / 20) var(--keyboard_clr_shadow); */
     font-family: var(--key_font);
