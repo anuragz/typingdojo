@@ -282,12 +282,14 @@ background-color:lightgray;
 	<tr>
 	<td>
 	<div id="iconbar">
+	<span class="span1">&#128100;</span>
 	<span class="span1" onclick="goHome()" >&#127968;</span>
 	<span class="span1" onclick="help()">&#128161;</span>	
-	<span class="span1" id="speakerspan" onclick="togglespeaker()" >&#128266;</span>	
-	<span class="span1" onclick="backPage()" >&#8592;</span>
-	<span class="span1" onclick="refresh()" >&#8635;</span>
-	<span class="span1" onclick="nextPage()" >&#8594;</span>
+	<span class="span1" id="speakerspan" onclick="togglespeaker()" >&#128263;</span>	
+	<span class="span1">&#128200;</span>
+	<span class="span1" onclick="backPage()" >&#9194;</span>
+	<span class="span1" onclick="refresh()" >&#128260;</span>
+	<span class="span1" onclick="nextPage()" >&#9193;</span>
 	</div>
 	</td>
 	</tr>
@@ -389,7 +391,7 @@ background-color:lightgray;
 	
 <script type="text/javascript">
 var seconds=0;
-var speakeron=true;
+var speakeron=false;
 document.getElementById("timer").innerHTML=seconds;
 function autoRefreshTimer() {
 	seconds++;
