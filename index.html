@@ -7,13 +7,16 @@ body{
 	margin:auto;
   	padding:auto;
 }
-span:hover{
+
+.span1{
+  font-size:xx-large;
+}
+
+.span1:hover{
   cursor: pointer;
 }
 
-span{
-  font-size:xx-large;
-}
+ 
 td{
 	background-color: lightgray;
 	margin:auto;
@@ -80,56 +83,312 @@ table {
     margin: 25px auto;
     padding: auto;
     border-spacing: 0px;
-    border:0px;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@import url('https://fonts.googleapis.com/css2?family=Questrial&display=swap');
+.keyboard { 
+    --key_size: calc(100vw / 40) /* 60px; */;
+    --keyboard_clr_background: rgb(201, 201, 201);
+    --keyboard_clr_shadow: rgba(0, 0, 0, 1);
+    --key_clr_background:  rgb(243, 243, 243);
+    --key_clr_shadow: rgb(80, 80, 80);
+    --key_clr_text: rgb(0,0,0);
+    --key_font: 'Questrial', sans-serif;
+    --key_clr_border: rgb(0,0,0);
+    --key_clr_border_hover: rgb(200, 35, 35);
+    --key_clr_border_active: rgb(20, 100, 20);     
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* border:1px solid; */
+    
+}
+body{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+h1{
+    color: white;
+    font-size: calc(100vw / 25);
+    font-family: 'Questrial', sans-serif ;
+    text-shadow: 2px 2px 5px black;
+    margin-bottom: 20px;
+}
+
+.keyboard{
+    display: grid;
+    grid-template-columns: auto;
+    grid-gap: calc(var(--key_size) / 2);
+    border-radius: calc(var(--key_size) / 5);
+    background-color: var(--keyboard_clr_background);
+    padding: calc(var(--key_size) / 2);
+   /*  user-select: none;
+    border: calc(var(--key_size) / 25) solid var(--key_clr_border);
+    box-shadow: 0 0  calc(var(--key_size) / 10) calc(var(--key_size) / 20) var(--keyboard_clr_shadow); */
+    font-family: var(--key_font);
+}
+.section{
+    display: grid;
+    grid-template-rows: repeat(5, var(--key_size));
+    grid-gap: calc(var(--key_size) / 10);   
+}
+.section.cent{
+    grid-template-columns: repeat(30, calc(var(--key_size) / 2));
+/*  border: 1px solid; */
+    margin:auto;
+    padding:auto;
+}
+/* .section.right{
+
+    grid-template-columns: repeat(6, calc(var(--key_size) / 2));
+} */
+.key {
+    background-color: var(--key_clr_background);
+    border: calc(var(--key_size) / 50) solid var(--key_clr_border);
+    border-radius: calc(var(--key_size) / 10);
+    grid-column: span 2;
+    font-size: calc(var(--key_size) / 3.5);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    cursor: pointer;
+    box-shadow: calc(var(--key_size) / 25) calc(var(--key_size) / 25) calc(var(--key_size) / 25) var(--key_clr_shadow);
+/*  border: 1px solid; */
+}
+
+.blue{
+background-color:blue;
+}
+
+.green{
+background-color:green;
+}
+
+
+.lightblue{
+background-color:lightblue;
+}
+
+.lightgreen{
+background-color:lightgreen;
+}
+
+.lightyellow{
+background-color:lightyellow;
+}
+
+
+.yellow{
+background-color:yellow;
+}
+
+.lightpink{
+background-color:lightpink;
+}
+
+.orange{
+background-color:orange;
+}
+
+.maroon{
+background-color:maroon;
+}
+
+.LightSalmon{
+background-color:LightSalmon;
+}
+
+.lightgray{
+background-color:lightgray;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.key i {
+    font-weight: 600;
+
+}
+.emptykey{
+    grid-column: span 2;
+}
+.key span{
+    /* font-size: .95em; */
+}
+.key:hover {
+    border-color: var(--key_clr_border_hover);
+}
+.key:active {
+    margin: calc(var(--key_size) / 25) 0 0 calc(var(--key_size) / 25);
+    border-color: var(--key_clr_border_active);
+    box-shadow: none;
+}
+.backspace  {grid-column: span  4;}
+.tab        {grid-column: span  3;}
+.backslash  {grid-column: span  3;}
+.capslock   {grid-column: span  4;}
+.enter      {grid-column: span  4;}
+.leftshift  {grid-column: span  5;}
+.rightshift {grid-column: span  5;}
+.leftctrl   {grid-column: span  3;}
+.rightctrl  {grid-column: span  3;}
+.space      {grid-column: span 20;}
+
 </style>
 </head>
 
 <body>
 	<table>
 	<tr>
-	<td><div id="leftbox"><!--  
-	<span onclick="goHome()" >&#127968;</span><br>
-	<span id="speakerspan" onclick="togglespeaker()" >&#128266;</span>
-	--></div></td>
-	
 	<td>
 	<h1>Typing Practice</h1>
 	<h2>Lesson: <span id="lessonNumber">1</span> &#8987; <span id="timer"></span> seconds</h2>
 	</td>
-	<td><div id ="rightbox">
-	<!-- <span onclick="nextPage()" >&#8594;</span><br>
-	<span onclick="refresh()" >&#8635;</span><br>
-	<span onclick="backPage()" >&#8592;</span>
-	--></div></td>
 	</tr>
 	
 	
 	<tr>
-	<td colspan=3>
+	<td>
 	<div id="iconbar">
-	<span onclick="goHome()" >&#127968;</span>
-	<span onclick="help()">&#128161;</span>	
-	<span id="speakerspan" onclick="togglespeaker()" >&#128266;</span>	
-	<span onclick="backPage()" >&#8592;</span>
-	<span onclick="refresh()" >&#8635;</span>
-	<span onclick="nextPage()" >&#8594;</span>
+	<span class="span1" onclick="goHome()" >&#127968;</span>
+	<span class="span1" onclick="help()">&#128161;</span>	
+	<span class="span1" id="speakerspan" onclick="togglespeaker()" >&#128266;</span>	
+	<span class="span1" onclick="backPage()" >&#8592;</span>
+	<span class="span1" onclick="refresh()" >&#8635;</span>
+	<span class="span1" onclick="nextPage()" >&#8594;</span>
 	</div>
 	</td>
 	</tr>
 	
-	
 	<tr>
-	<td colspan=3>
-<div id="bigbox">
+	<td >
+		<div id="bigbox">
 		<div id="screen">
 		</div>
 	</div>
 	</td>
 	</tr>
+	
 	<tr>
-	<td colspan=3>
-	<img src="img/KeyboardFingerPositions.png" alt="KeyboardFingerPositions">
+	<td >
+	<!-- <img src="img/KeyboardFingerPositions.png" alt="KeyboardFingerPositions"> -->
+	<div class="keyboard">
+    <div class="section cent">
+        <div class="key"><span>~</span><span>`</span></div>
+        <div class="key"><span>!</span><span>1</span></div>
+        <div class="key"><span>@</span><span>2</span></div>
+        <div class="key"><span>#</span><span>3</span></div>
+        <div class="key"><span>$</span><span>4</span></div>
+        <div class="key"><span>%</span><span>5</span></div>
+        <div class="key"><span>^</span><span>6</span></div>
+        <div class="key"><span>&</span><span>7</span></div>
+        <div class="key"><span>*</span><span>8</span></div>
+        <div class="key"><span>(</span><span>9</span></div>
+        <div class="key"><span>)</span><span>0</span></div>
+        <div class="key"><span>_</span><span>-</span></div>
+        <div class="key"><span>+</span><span>=</span></div>
+        <div class="key backspace">Backspace</div>
+        <div class="key tab">Tab</div>
+        <div class="key lightblue">Q</div>
+        <div class="key lightgreen">W</div>
+        <div class="key lightyellow">E</div>
+        <div class="key orange">R</div>
+        <div class="key orange">T</div>
+        <div class="key lightpink">Y</div>
+        <div class="key lightpink">U</div>
+        <div class="key yellow">I</div>
+        <div class="key green">O</div>
+        <div class="key blue">P</div>
+        <div class="key"><span>{</span><span>[</span></div>
+        <div class="key"><span>}</span><span>]</span></div>
+        <div class="key backslash"><span>|</span><span>\</span></div>
+        <div class="key capslock">CapsLock</div>
+        <div class="key lightblue">A</div>
+        <div class="key lightgreen">S</div>
+        <div class="key lightyellow">D</div>
+        <div class="key orange">F</div>
+        <div class="key orange">G</div>
+        <div class="key lightpink">H</div>
+        <div class="key lightpink">J</div>
+        <div class="key yellow">K</div>
+        <div class="key green">L</div>
+        <div class="key blue"><span>:</span><span>;</span></div>
+        <div class="key"><span>"</span><span>'</span></div>
+        <div class="key enter">Enter</div>
+        <div class="key leftshift">Shift</div>
+        <div class="key lightblue">Z</div>
+        <div class="key lightgreen">X</div>
+        <div class="key lightyellow">C</div>
+        <div class="key orange">V</div>
+        <div class="key orange">B</div>
+        <div class="key lightpink">N</div>
+        <div class="key lightpink">M</div>
+        <div class="key yellow"><span><</span><span>,</span></div>
+        <div class="key green"><span>></span><span>.</span></div>
+        <div class="key blue"><span>?</span><span>/</span></div>
+        <div class="key rightshift">Shift</div>
+        <div class="key leftctrl">Ctrl</div>
+        <div class="key">Alt</div>
+        <div class="key space">Space</div>
+        <div class="key">Alt</div>
+        <div class="key rightctrl">Ctrl</div>
+    </div>
+    <!-- <div class="section right">
+        <div class="key">Insert</div>
+        <div class="key">Home</div>
+        <div class="key">PgUp</div>
+        <div class="key">Del</div>
+        <div class="key">End</div>
+        <div class="key">PgDn</div>
+        <div class="emptykey"></div>
+        <div class="emptykey"></div>
+        <div class="emptykey"></div>
+        <div class="emptykey"></div>
+        <div class="key">Up</div>
+        <div class="emptykey"></div>
+        <div class="key">left</div>
+        <div class="key">down</div>
+        <div class="key">right</div>
+    </div> -->
+</div>
 	</td>
 	</tr>
 	</table>
