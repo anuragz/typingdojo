@@ -203,6 +203,13 @@ body {
 	/*  border: 1px solid; */
 }
 
+.fontNormal{
+font-size: calc(var(--key_size)/3.5);
+}
+
+.fontLarge{
+font-size: calc(var(--key_size)/1.5);
+}
 .lime {
 	background-color: lime;
 }
@@ -396,16 +403,16 @@ body {
 						</div>
 						<div class="key backspace">Backspace</div>
 						<div class="key lightblue tab">Tab</div>
-						<div class="key lightblue">Q</div>
-						<div class="key lightgreen">W</div>
-						<div class="key lightypurple">E</div>
-						<div class="key orange">R</div>
-						<div class="key orange">T</div>
-						<div class="key lightpink">Y</div>
-						<div class="key lightpink">U</div>
-						<div class="key yellow">I</div>
-						<div class="key olive">O</div>
-						<div class="key lime">P</div>
+						<div id="q" class="key lightblue">Q</div>
+						<div id="w" class="key lightgreen">W</div>
+						<div id="e" class="key lightypurple">E</div>
+						<div id="r" class="key orange">R</div>
+						<div id="t" class="key orange">T</div>
+						<div id="y" class="key lightpink">Y</div>
+						<div id="u" class="key lightpink">U</div>
+						<div id="i" class="key yellow">I</div>
+						<div id="o" class="key olive">O</div>
+						<div id="p" class="key lime">P</div>
 						<div class="key lime">
 							<span>{</span><span>[</span>
 						</div>
@@ -416,15 +423,15 @@ body {
 							<span>|</span><span>\</span>
 						</div>
 						<div class="key lightblue capslock">CapsLock</div>
-						<div id=keyA class="key lightblue">A</div>
-						<div class="key lightgreen">S</div>
-						<div class="key lightypurple">D</div>
-						<div class="key orange">F</div>
-						<div class="key orange">G</div>
-						<div class="key lightpink">H</div>
-						<div id=keyJ class="key lightpink">J</div>
-						<div class="key yellow">K</div>
-						<div class="key olive">L</div>
+						<div id="a" class="key lightblue">A</div>
+						<div id="s" class="key lightgreen">S</div>
+						<div id="d" class="key lightypurple">D</div>
+						<div id="f" class="key orange">F</div>
+						<div id="g" class="key orange">G</div>
+						<div id="h" class="key lightpink">H</div>
+						<div id="j" class="key lightpink">J</div>
+						<div id="k" class="key yellow">K</div>
+						<div id="l" class="key olive">L</div>
 						<div class="key lime">
 							<span>:</span><span>;</span>
 						</div>
@@ -433,13 +440,13 @@ body {
 						</div>
 						<div class="key lime enter">Enter</div>
 						<div class="key lightblue leftshift">Shift</div>
-						<div class="key lightblue">Z</div>
-						<div class="key lightgreen">X</div>
-						<div class="key lightypurple">C</div>
-						<div class="key orange">V</div>
-						<div class="key orange">B</div>
-						<div class="key lightpink">N</div>
-						<div class="key lightpink">M</div>
+						<div id="z" class="key lightblue">Z</div>
+						<div id="x" class="key lightgreen">X</div>
+						<div id="c" class="key lightypurple">C</div>
+						<div id="v" class="key orange">V</div>
+						<div id="b" class="key orange">B</div>
+						<div id="n" class="key lightpink">N</div>
+						<div id="m" class="key lightpink">M</div>
 						<div class="key yellow">
 							<span><</span><span>,</span>
 						</div>
@@ -553,7 +560,7 @@ document.getElementById("lessonNumber").innerHTML=lessonNumber;
 
 var input="z y x w v u t s r q p o n m l k j i h g f e d c b a";
 var textarray=lessons.at(lessonNumber).split("");
-
+var charcount=textarray.length;
 for(let e=currentindex=0;e<textarray.length;++e){
 	const g=textarray[e];
 	var iDiv=document.createElement("div");
@@ -565,6 +572,7 @@ for(let e=currentindex=0;e<textarray.length;++e){
 
 function loadContent(input){
 	//alert(input);
+	charcount=input.length;
 	textarray=input.split("");
 	while (document.getElementById("screen").lastElementChild){
 		document.getElementById("screen").removeChild(document.getElementById("screen").lastElementChild);
@@ -625,10 +633,29 @@ function togglespeaker(){
 	}
 }
 
-	
+var currenthighlighted = null;	
 function autoRefreshImg() {
 	if(null!=document.getElementById(currentindex)){
 		changeHandImages(textarray[currentindex]);
+		if(currenthighlighted==null){
+			currenthighlighted = textarray[currentindex];
+			document.getElementById(currenthighlighted).classList.add("fontLarge");
+/* style.fontSize="x-large"  */;
+		}else{
+			document.getElementById(currenthighlighted).classList.remove("fontLarge");
+/* style.fontSize = "medium" */;
+			currenthighlighted = textarray[currentindex];
+			document.getElementById(currenthighlighted).classList.add("fontLarge");
+/* style.fontSize="x-large" */ ;
+		}
+		
+		if(currentindex==charcount-1){
+			document.getElementById(currenthighlighted).classList.remove("fontLarge");
+/* style.fontSize = "medium" */;
+			document.getElementById("lefthandimg").src="img/left-hand-No.png";
+			document.getElementById("righthandimg").src="img/right-hand-No.png";
+		}
+		
 	}
 }
 setInterval('autoRefreshImg()', 250);
