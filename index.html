@@ -131,10 +131,9 @@ img {
 	margin-left: auto;
 	margin-right: auto;
 	background-color: lightgray;
-	height: calc(var(--key_size)*5) ;
-  	width: calc(var(--key_size)*5);
+	height: calc(var(--key_size)*5);
+	width: calc(var(--key_size)*5);
 }
-
 
 * {
 	margin: 0;
@@ -203,13 +202,14 @@ body {
 	/*  border: 1px solid; */
 }
 
-.fontNormal{
-font-size: calc(var(--key_size)/3.5);
+.fontNormal {
+	font-size: calc(var(--key_size)/3.5);
 }
 
-.fontLarge{
-font-size: calc(var(--key_size)/1.5);
+.fontLarge {
+	font-size: calc(var(--key_size)/1.5);
 }
+
 .lime {
 	background-color: lime;
 }
@@ -359,7 +359,7 @@ font-size: calc(var(--key_size)/1.5);
 				<!-- <img src="img/KeyboardFingerPositions.png" alt="KeyboardFingerPositions"> -->
 				<div class="keyboard">
 					<div class="section left">
-					<img id=lefthandimg  src="img/left-hand.png" alt="Left hand">
+						<img id=lefthandimg src="img/left-hand.png" alt="Left hand">
 					</div>
 					<div class="section cent">
 						<div class="key">
@@ -464,7 +464,7 @@ font-size: calc(var(--key_size)/1.5);
 						<div class="key rightctrl">Ctrl</div>
 					</div>
 					<div class="section right">
-					<img id=righthandimg src="img/right-hand.png" alt="Right hand">
+						<img id=righthandimg src="img/right-hand.png" alt="Right hand">
 					</div>
 				</div>
 			</td>
@@ -640,25 +640,26 @@ function autoRefreshImg() {
 		if(currenthighlighted==null){
 			currenthighlighted = textarray[currentindex];
 			document.getElementById(currenthighlighted).classList.add("fontLarge");
-/* style.fontSize="x-large"  */;
 		}else{
-			document.getElementById(currenthighlighted).classList.remove("fontLarge");
-/* style.fontSize = "medium" */;
-			currenthighlighted = textarray[currentindex];
-			document.getElementById(currenthighlighted).classList.add("fontLarge");
-/* style.fontSize="x-large" */ ;
+			if(document.getElementById(currenthighlighted)!=null && isCharacterALetter(textarray[currentindex])){
+				document.getElementById(currenthighlighted).classList.remove("fontLarge");
+				currenthighlighted = textarray[currentindex];
+				document.getElementById(currenthighlighted).classList.add("fontLarge");
+			}
 		}
-		
-		if(currentindex==charcount-1){
-			document.getElementById(currenthighlighted).classList.remove("fontLarge");
-/* style.fontSize = "medium" */;
-			document.getElementById("lefthandimg").src="img/left-hand-No.png";
-			document.getElementById("righthandimg").src="img/right-hand-No.png";
-		}
-		
+		console.log("currentindex"+currentindex+",charcount"+charcount); 		
+	}
+	if(currentindex==charcount){
+		document.getElementById(currenthighlighted).classList.remove("fontLarge");
+		document.getElementById("lefthandimg").src="img/left-hand-No.png";
+		document.getElementById("righthandimg").src="img/right-hand-No.png";
 	}
 }
 setInterval('autoRefreshImg()', 250);
+
+function isCharacterALetter(char) {
+	  return (/[a-zA-Z]/).test(char)
+	}
 	
 document.addEventListener("keypress",
 	function(e){
