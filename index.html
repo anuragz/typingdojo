@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <head>
 <title>Practice English Typing</title>
+
 <style>
-@import
-	url('https://fonts.googleapis.com/css2?family=Questrial&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Questrial&display=swap');
 
 body {
 	background-color: gray;
@@ -76,7 +76,6 @@ h2 {
 	padding: 10px;
 	text-align: center;
 	border-top: 1px dashed gray;
-	font-style: italic;
 }
 
 a {
@@ -123,8 +122,6 @@ table {
 	--key_clr_text: rgb(0, 0, 0);
 	--key_font: 'Questrial', sans-serif;
 	--key_clr_border: rgb(0, 0, 0);
-	--key_clr_border_hover: rgb(200, 35, 35);
-	--key_clr_border_active: rgb(20, 100, 20);
 }
 
 img {
@@ -139,7 +136,6 @@ img {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
-	/* border:1px solid; */
 }
 
 body {
@@ -155,12 +151,6 @@ body {
 	grid-template-columns: auto auto auto;
 	grid-gap: calc(var(--key_size)/2);
 	padding: calc(var(--key_size)/2);
-	/*  
-    border-radius: calc(var(--key_size) / 5);
-    background-color: var(--keyboard_clr_background);    
-	user-select: none;
-    border: calc(var(--key_size) / 25) solid var(--key_clr_border);
-    box-shadow: 0 0  calc(var(--key_size) / 10) calc(var(--key_size) / 20) var(--keyboard_clr_shadow); */
 	font-family: var(--key_font);
 }
 
@@ -172,7 +162,6 @@ body {
 
 .section.cent {
 	grid-template-columns: repeat(30, calc(var(--key_size)/2));
-	/*  border: 1px solid; */
 	margin: auto;
 	padding: auto;
 }
@@ -199,7 +188,6 @@ body {
 	cursor: pointer;
 	box-shadow: calc(var(--key_size)/25) calc(var(--key_size)/25)
 		calc(var(--key_size)/25) var(--key_clr_shadow);
-	/*  border: 1px solid; */
 }
 
 .fontNormal {
@@ -311,10 +299,43 @@ body {
 .space {
 	grid-column: span 20;
 }
+
+.tooltip-text {
+  visibility: hidden;
+  position: absolute;
+  z-index: 1;
+  width: 100px;
+  color: white;
+  background-color: #192733;
+  padding: 5px;
+}
+
+.hover-text:hover .tooltip-text {
+  visibility: visible;
+}
+
+.top {
+  top: -40px;
+  left: -50%;
+}
+
+.hover-text {
+  position: relative;
+  display: inline-block;
+  margin: 40px;
+  text-align: center;
+}
+
+.span2 {
+	font-size: small;
+}
 </style>
 </head>
 
 <body>
+	<audio id="beep">
+		<source src="mp3/beep.mp3" type="audio/mpeg">
+	</audio>
 	<table>
 		<tr>
 			<td>
@@ -325,15 +346,15 @@ body {
 		<tr>
 			<td>
 				<div id="iconbar">
-					<span class="span1" onclick="featureNotReady()">&#128100;</span> <span
-						class="span1" onclick="goHome()">&#127968;</span> <span
-						class="span1" onclick="help()">&#128161;</span> <span
-						class="span1" id="speakerspan" onclick="togglespeaker()">&#128263;</span>
-					<span class="span1" onclick="featureNotReady()">&#128200;</span> <span
-						class="span1" onclick="featureNotReady()">&#8987;</span> <span
-						class="span1" onclick="backPage()">&#9194;</span> <span
-						class="span1" onclick="refresh()">&#128260;</span> <span
-						class="span1" onclick="nextPage()">&#9193;</span>
+					<span class="span1" onclick="featureNotReady()">&#128100;</span> 
+					<span class="span1" onclick="goHome()">&#127968;</span> 
+				    <span class="span1" onclick="help()">&#128161;</span>
+				    <span class="span1" id="speakerspan" onclick="togglespeaker()">&#128263;</span>
+					<span class="span1" onclick="featureNotReady()">&#128200;</span> 
+					<span class="span1" onclick="featureNotReady()">&#8987;</span> 
+					<span class="span1" onclick="backPage()">&#9194;</span> 
+					<span class="span1" onclick="refresh()">&#128260;</span> 
+					<span class="span1" onclick="nextPage()">&#9193;</span>
 				</div>
 			</td>
 		</tr>
@@ -356,7 +377,6 @@ body {
 
 		<tr>
 			<td>
-				<!-- <img src="img/KeyboardFingerPositions.png" alt="KeyboardFingerPositions"> -->
 				<div class="keyboard">
 					<div class="section left">
 						<img id=lefthandimg src="img/left-hand.png" alt="Left hand">
@@ -571,7 +591,6 @@ for(let e=currentindex=0;e<textarray.length;++e){
 }
 
 function loadContent(input){
-	//alert(input);
 	charcount=input.length;
 	textarray=input.split("");
 	while (document.getElementById("screen").lastElementChild){
@@ -617,7 +636,6 @@ function backPage(){
 	lessonNumber--;
 	if(lessonNumber<0){lessonNumber=lessonssize-1}
 	document.getElementById("lessonNumber").innerHTML=lessonNumber;
-	//location.reload();
 	loadContent(lessons.at(lessonNumber));
 	document.getElementById("righthandimg").src="img/right-hand-No.png";
 	document.getElementById("lefthandimg").src="img/left-hand-No.png";
@@ -660,23 +678,26 @@ setInterval('autoRefreshImg()', 250);
 function isCharacterALetter(char) {
 	  return (/[a-zA-Z]/).test(char)
 	}
-	
+var beep = document.getElementById("beep"); 	
 document.addEventListener("keypress",
 	function(e){
 	if(null!=document.getElementById(currentindex)){
-		textarray[currentindex]!=e.key?document.getElementById(currentindex).style.backgroundColor="#FF0000":document.getElementById(currentindex).style.backgroundColor="#00FF66",
+		textarray[currentindex]!=e.key?(document.getElementById(currentindex).style.backgroundColor="#FF0000", playbeep()):document.getElementById(currentindex).style.backgroundColor="#00FF66",
 		currentindex++;
 	}
 	if (e.keyCode === 13) {
-           // Enter key is pressed
            refresh();
     }
-	if(e.keyCode === 8){//backspace
-		alert("You can not edit mistakes, so continue typing and try to not make same mistake next time.");
+	if(e.keyCode === 8){
+		alert("When speaker is on it will beep on mistakes. You can not edit mistakes, so continue typing and try to not make same mistake next time.");
 	}
-	
 });
 
+function playbeep(){	
+	if(speakeron){
+		beep.play();
+	}
+}
 
 function help(){	
 	alert("Press home button to go to lesson 0. Press enter button to repeat same lesson. You can not edit mistakes, so continue typing and try to not make same mistake next time.");
@@ -687,7 +708,6 @@ function featureNotReady() {
 }
 
 function changeHandImages( key){
-	//alert(key);
 	if(key=="a"||key=="q"||key=="z" ){
 		document.getElementById("lefthandimg").src="img/left-hand-A-rows.png";
 		document.getElementById("righthandimg").src="img/right-hand-No.png";
