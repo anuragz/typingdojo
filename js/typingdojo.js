@@ -1,25 +1,22 @@
-alert("Place your left hand fingers on the keys A, S, D and F( left index finger). Your right hand fingers on the keys J( right index finger), K, L and semicolon. ");
 var seconds=0;
 var speakeron=false;
-document.getElementById("timer").innerHTML=seconds;
-function autoRefreshTimer() {
-	seconds++;
-	document.getElementById("timer").innerHTML=seconds;
-}
-setInterval('autoRefreshTimer()', 1000);
-
 const lessons = ["abcdefghijklmnopqrstuvwxyz", "zyxwvutsrqponmlkjihgfedcba",
 	"the quick brown fox jumps over the lazy dog." 
 	];
 const lessonssize = lessons.reduce((acc) => acc + 1, 0);
-
 var lessonNumber=0;
-document.getElementById("lessonNumber").innerHTML=lessonNumber;
-
-
 var input="z y x w v u t s r q p o n m l k j i h g f e d c b a";
 var textarray=lessons.at(lessonNumber).split("");
 var charcount=textarray.length;
+var beep = null; 	
+var currenthighlighted = null;
+
+function main(){
+beep = document.getElementById("beep"); 
+alert("Place your left hand fingers on the keys A, S, D and F( left index finger). Your right hand fingers on the keys J( right index finger), K, L and semicolon. ");
+document.getElementById("timer").innerHTML=seconds;
+
+document.getElementById("lessonNumber").innerHTML=lessonNumber;
 for(let e=currentindex=0;e<textarray.length;++e){
 	const g=textarray[e];
 	var iDiv=document.createElement("div");
@@ -27,6 +24,28 @@ for(let e=currentindex=0;e<textarray.length;++e){
 	iDiv.style.margin="2px 0px 2px 0px",
 	iDiv.id=e," "==g?iDiv.innerHTML="&nbsp":iDiv.innerHTML=g,
 	document.getElementById("screen").appendChild(iDiv)
+}
+
+document.addEventListener("keypress",
+	function(e){
+	if(null!=document.getElementById(currentindex)){
+		textarray[currentindex]!=e.key?(document.getElementById(currentindex).style.backgroundColor="#FF0000", playbeep()):document.getElementById(currentindex).style.backgroundColor="#00FF66",
+		currentindex++;
+	}
+	if (e.keyCode === 13) {
+           refresh();
+    }
+	if(e.keyCode === 8){
+		alert("When speaker is on it will beep on mistakes. You can not edit mistakes, so continue typing and try to not make same mistake next time.");
+	}
+});
+setInterval('autoRefreshTimer()', 1000);
+setInterval('autoRefreshImg()', 250);
+}
+
+function autoRefreshTimer() {
+	seconds++;
+	document.getElementById("timer").innerHTML=seconds;
 }
 
 function loadContent(input){
@@ -90,7 +109,7 @@ function togglespeaker(){
 	}
 }
 
-var currenthighlighted = null;	
+	
 function autoRefreshImg() {
 	if(null!=document.getElementById(currentindex)){
 		changeHandImages(textarray[currentindex]);
@@ -112,25 +131,11 @@ function autoRefreshImg() {
 		document.getElementById("righthandimg").src="img/right-hand-No.png";
 	}
 }
-setInterval('autoRefreshImg()', 250);
+
 
 function isCharacterALetter(char) {
 	  return (/[a-zA-Z]/).test(char)
 	}
-var beep = document.getElementById("beep"); 	
-document.addEventListener("keypress",
-	function(e){
-	if(null!=document.getElementById(currentindex)){
-		textarray[currentindex]!=e.key?(document.getElementById(currentindex).style.backgroundColor="#FF0000", playbeep()):document.getElementById(currentindex).style.backgroundColor="#00FF66",
-		currentindex++;
-	}
-	if (e.keyCode === 13) {
-           refresh();
-    }
-	if(e.keyCode === 8){
-		alert("When speaker is on it will beep on mistakes. You can not edit mistakes, so continue typing and try to not make same mistake next time.");
-	}
-});
 
 function playbeep(){	
 	if(speakeron){
