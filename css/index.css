@@ -23,6 +23,8 @@ input{
 #formdiv {
   text-align: center;
   vertical-align: middle;
+  border-top: 1px dashed gray;
+  border-bottom: 1px dashed gray;
 }
 td {
 	background-color: #c39bd3;
@@ -57,21 +59,11 @@ h2 {
 	color:purple;
 }
 
-#iconbar {
-	background-color: #c39bd3;
-	margin: 0px auto;
-	padding: 0px auto;
-	text-align: center;
-	/* border-top: 1px dashed gray; */
-	border-bottom: 1px dashed gray;
-}
-
 .footer1 {
 	background-color: #c39bd3;
 	margin: 0px auto;
 	padding: 0px auto;
 	text-align: center;
-	/* border-top: 1px dashed gray; */
 	font-size: large;
 	color:purple;
 }
@@ -81,7 +73,6 @@ h2 {
 	margin: 0px auto;
 	padding: 10px;
 	text-align: center;
-	border-top: 1px dashed gray;
 }
 
 a {
