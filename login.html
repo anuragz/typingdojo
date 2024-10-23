@@ -1,58 +1,40 @@
 <!DOCTYPE html>
 <head>
 <title>Practice English Typing</title>
-<link rel="stylesheet" href="css/typingdojo.slim.css">
+<link rel="stylesheet" href="css/login.css">
+<script>
+function validateForm() {
+	 let x = document.forms["myForm"]["fname"].value;
+	 let y = document.forms["myForm"]["fpswd"].value;
+	 if (document.getElementById('guestUser').checked) {
+		 window.location.href = "./index.html";
+		 return false;
+     } else {
+    	 if (x == "" || y == "") {
+   		    alert("Please try again, after filling the details.");
+   		  }
+    } 
+}
+</script>
 </head>
 
-<body onload="main()">
-	<audio id="beep">
-		<source src="mp3/beep.mp3" type="audio/mpeg">
-	</audio>
+<body>
 	<table>
 		<tr>
 			<td>
 				<h1>QWERTY Keyboard Typing Practice</h1>
 			</td>
 		</tr>
-
 		<tr>
-			<td>
-				<div id="iconbar">
-					<span class="span1" onclick="featureNotReady()">&#128100;</span> 
-					<span class="span1" onclick="goHome()">&#127968;</span> 
-				    <span class="span1" onclick="help()">&#128161;</span>
-				    <span class="span1" id="speakerspan" onclick="togglespeaker()">&#128263;</span>
-					<span class="span1" onclick="featureNotReady()">&#128200;</span> 
-					<span class="span1" onclick="featureNotReady()">&#8987;</span> 
-					<span class="span1" onclick="backPage()">&#9194;</span> 
-					<span class="span1" onclick="refresh()">&#128260;</span> 
-					<span class="span1" onclick="nextPage()">&#9193;</span>
+			<td><div id="formdiv">
+				<form name="myForm" onsubmit="return validateForm()" method="post">
+				  Username: <input type="text" name="fname"><br>
+				  Password: <input type="text" name="fpswd"><br>
+				  <label for="guestUser"> Guest</label>
+				  <input type="checkbox" id="guestUser" name="Guest" value="Guest">
+				  <input type="submit" value="Submit"><br>
+				</form>
 				</div>
-			</td>
-		</tr>
-
-		<tr>
-			<td>
-				<h2>
-				</h2>
-			</td>
-		</tr>
-
-		<tr>
-			<td>
-				<div id="bigbox">
-					<div id="screen"></div>
-				</div>
-			</td>
-		</tr>
-
-		<tr>
-			<td>
-			</td>
-		</tr>
-
-		<tr>
-			<td class="footer1">&#8987;<span id="timer"></span> seconds
 			</td>
 		</tr>
 		<tr>
