@@ -63,7 +63,7 @@ h2 {
 	margin: 0px auto;
 	padding: 0px auto;
 	text-align: center;
-	/* border-top: 1px dashed gray; */
+	border-top: 1px dashed gray;
 	font-size: large;
 	color:purple;
 }
@@ -78,6 +78,24 @@ h2 {
 
 a {
 	text-decoration: none;
+	color: purple;
+}
+
+a:link {
+  	text-decoration: none;
+	color: purple;
+}
+a:visited {
+  	text-decoration: none;
+	color: purple;
+}
+a:hover {
+  	text-decoration: none;
+	color: purple;
+}
+a:active {
+  	text-decoration: none;
+	color: purple;
 }
 
 #screen {
@@ -114,9 +132,7 @@ table {
 .keyboard {
 	--key_size: calc(100vw/ 40) /* 60px; */;
 	--keyboard_clr_background: rgb(201, 201, 201);
-	--keyboard_clr_shadow: rgba(0, 0, 0, 1);
 	--key_clr_background: rgb(243, 243, 243);
-	--key_clr_shadow: rgb(80, 80, 80);
 	--key_clr_text: rgb(0, 0, 0);
 	--key_font: 'Questrial', sans-serif;
 	--key_clr_border: rgb(0, 0, 0);
@@ -184,8 +200,8 @@ body {
 	align-items: center;
 	justify-content: space-around;
 	cursor: pointer;
-	box-shadow: calc(var(--key_size)/25) calc(var(--key_size)/25)
-		calc(var(--key_size)/25) var(--key_clr_shadow);
+	/* box-shadow: calc(var(--key_size)/25) calc(var(--key_size)/25)
+		calc(var(--key_size)/25) var(--key_clr_shadow); */
 }
 
 .fontNormal {
@@ -326,4 +342,24 @@ body {
 
 .span2 {
 	font-size: small;
+}
+
+.uppercase{
+	text-transform:uppercase;
+}
+
+.uppercase{
+	text-transform:lowercase;
+}
+
+.mark{
+	 color: white;
+	 font-size:medium;
+	 font-weight: bold;
+}
+.bump{
+	border-bottom:solid gray;
+}
+.neonbump{
+	border-bottom:solid #2323FF;
 }

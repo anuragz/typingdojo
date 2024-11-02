@@ -22,9 +22,9 @@
 					<span class="span1" onclick="featureNotReady()">&#128100;</span> 
 					<span class="span1" onclick="goHome()">&#127968;</span> 
 				    <span class="span1" onclick="help()">&#128161;</span>
-				    <span class="span1" id="speakerspan" onclick="togglespeaker()">&#128263;</span>
-					<span class="span1" onclick="featureNotReady()">&#128200;</span> 
-					<span class="span1" onclick="featureNotReady()">&#8987;</span> 
+				    <span class="span1" id="speakerspan" onclick="togglespeaker()">&#128266;</span>
+					<span class="span1" onclick="toggleAnalyticDisplay()">&#128200;</span> 
+					<span class="span1" onclick="toggleTimerDisplay()">&#8987;</span> 
 					<span class="span1" onclick="backPage()">&#9194;</span> 
 					<span class="span1" onclick="refresh()">&#128260;</span> 
 					<span class="span1" onclick="nextPage()">&#9193;</span>
@@ -115,14 +115,16 @@
 						<div class="key lime backslash">
 							<span>|</span><span>\</span>
 						</div>
-						<div class="key lightblue capslock">CapsLock</div>
+						<!-- <div class="key lightblue capslock">CapsLock</div> -->
+						<!-- <div class="key lightblue capslock"><span>CapsLock</span><span class="mark">.</span></div> -->
+						<div class="key lightblue capslock">CapsLock &#128995;</div>
 						<div id="a" class="key lightblue">A</div>
 						<div id="s" class="key lightgreen">S</div>
 						<div id="d" class="key lightypurple">D</div>
-						<div id="f" class="key orange">F</div>
+						<div id="f" class="key orange"><span class="bump">F</span></div>
 						<div id="g" class="key orange">G</div>
 						<div id="h" class="key lightpink">H</div>
-						<div id="j" class="key lightpink">J</div>
+						<div id="j" class="key lightpink"><span class="bump">J</span></div>
 						<div id="k" class="key yellow">K</div>
 						<div id="l" class="key olive">L</div>
 						<div class="key lime">
@@ -141,7 +143,7 @@
 						<div id="n" class="key lightpink">N</div>
 						<div id="m" class="key lightpink">M</div>
 						<div class="key yellow">
-							<span><</span><span>,</span>
+							<span><</span><span>,</span> <!-- correct because we need to show the < key -->
 						</div>
 						<div class="key olive">
 							<span>></span><span>.</span>
@@ -164,7 +166,12 @@
 		</tr>
 
 		<tr>
-			<td class="footer1">&#8987;<span id="timer"></span> seconds
+			<td class="footer1"><div id="timerdiv">&#8987; Time spend : <span id="timer"></span> seconds.</div>
+			</td>
+		</tr>
+		<tr>
+			<td class="footer1">
+			<div id="analyticdiv">&#128200; Typing accuracy : <span id="accuracy">00.00</span>%</div>
 			</td>
 		</tr>
 		<tr>
