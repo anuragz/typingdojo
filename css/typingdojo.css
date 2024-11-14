@@ -6,6 +6,15 @@ body {
 	padding: auto;
 }
 
+.innerbulb {
+  background-color:transparent;
+  width:10px;
+  height:5px;
+  border-radius:5px;
+  box-shadow: 0 0 8px white, inset 0 0 8px white;
+
+}
+
 .span1 {
 	font-size: xx-large;
 }
@@ -101,15 +110,19 @@ a:active {
 #screen {
 	margin: 0px;
 	padding: 10px;
-	background-color: #c39bd3;
+	/* background-color: #c39bd3; */
 	font-size: xx-large;
 	text-align: center;
 	/* border-top: 1px dashed gray; */
-	border-bottom: 1px dashed gray; 
+	/* border-bottom: 1px dashed gray;  */
 }
 
 #bigbox {
-	background-color: #c39bd3;
+	/* background-color: #c39bd3; */
+	border: 5px solid lightgray;
+	background-color: lightgray;
+	border-radius: 5px ;
+	
 }
 
 #leftbox {
@@ -202,6 +215,7 @@ body {
 	cursor: pointer;
 	/* box-shadow: calc(var(--key_size)/25) calc(var(--key_size)/25)
 		calc(var(--key_size)/25) var(--key_clr_shadow); */
+	 user-select: none;
 }
 
 .fontNormal {
@@ -264,7 +278,7 @@ body {
 	grid-column: span 2;
 }
 
-.key:hover {
+/* .key:hover {
 	border-color: var(--key_clr_border_hover);
 }
 
@@ -272,7 +286,7 @@ body {
 	margin: calc(var(--key_size)/25) 0 0 calc(var(--key_size)/25);
 	border-color: var(--key_clr_border_active);
 	box-shadow: none;
-}
+} */
 
 .backspace {
 	grid-column: span 4;
