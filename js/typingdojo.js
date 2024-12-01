@@ -25,15 +25,17 @@ for(let e=currentindex=0;e<textarray.length;++e){
 	iDiv.id=e," "==g?iDiv.innerHTML="&nbsp":iDiv.innerHTML=g,
 	document.getElementById("screen").appendChild(iDiv)
 }
-
+document.getElementById(currentindex).classList.add("blinking-text");
 document.addEventListener("keypress",
 	function(e){
 		pressedkey=e.key;
 		console.log("Key pressed: "+pressedkey);
 	if(null!=document.getElementById(currentindex)){
+		document.getElementById(currentindex).classList.remove("blinking-text");
 		textarray[currentindex]!=pressedkey?(document.getElementById(currentindex).style.backgroundColor="#FF0000", playbeep()):document.getElementById(currentindex).style.backgroundColor="#00FF66",
 		analytics(textarray[currentindex],pressedkey);
 		currentindex++;
+		document.getElementById(currentindex).classList.add("blinking-text");
 	}
 	if (e.keyCode === 13) {
            refresh();
@@ -68,6 +70,7 @@ function loadContent(input){
 		document.getElementById("screen").appendChild(iDiv)
 	}
 	currentindex=0;
+	document.getElementById(currentindex).classList.add("blinking-text");
 }
 
 function refresh(){	
@@ -76,6 +79,7 @@ function refresh(){
 	loadContent(lessons.at(lessonNumber));
 	document.getElementById("righthandimg").src="img/right-hand-No.png";
 	document.getElementById("lefthandimg").src="img/left-hand-No.png";
+	document.getElementById(currentindex).classList.add("blinking-text");
 }
 
 function nextPage(){
@@ -85,6 +89,7 @@ function nextPage(){
 	loadContent(lessons.at(lessonNumber));
 	document.getElementById("righthandimg").src="img/right-hand-No.png";
 	document.getElementById("lefthandimg").src="img/left-hand-No.png";
+	document.getElementById(currentindex).classList.add("blinking-text");
 }
 
 function goHome(){
@@ -93,6 +98,7 @@ function goHome(){
 	loadContent(lessons.at(lessonNumber));
 	document.getElementById("righthandimg").src="img/right-hand-No.png";
 	document.getElementById("lefthandimg").src="img/left-hand-No.png";
+	document.getElementById(currentindex).classList.add("blinking-text");
 }
 
 function backPage(){
@@ -102,6 +108,7 @@ function backPage(){
 	loadContent(lessons.at(lessonNumber));
 	document.getElementById("righthandimg").src="img/right-hand-No.png";
 	document.getElementById("lefthandimg").src="img/left-hand-No.png";
+	document.getElementById(currentindex).classList.add("blinking-text");
 }
 
 function togglespeaker(){

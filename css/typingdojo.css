@@ -7,11 +7,11 @@ body {
 }
 
 .innerbulb {
-  background-color:transparent;
+  background-color:gray;
   width:10px;
   height:5px;
   border-radius:5px;
-  box-shadow: 0 0 8px white, inset 0 0 8px white;
+  /* box-shadow: 0 0 8px white, inset 0 0 8px white; */
 
 }
 
@@ -117,10 +117,17 @@ a:active {
 	/* border-bottom: 1px dashed gray;  */
 }
 
-#bigbox {
-	/* background-color: #c39bd3; */
+#adsbox {
 	border: 5px solid lightgray;
 	background-color: lightgray;
+	border-radius: 5px ;
+	
+}
+
+#bigbox {
+	/* background-color: #c39bd3; */
+	border: 5px solid white;
+	background-color: white;
 	border-radius: 5px ;
 	
 }
@@ -376,4 +383,17 @@ body {
 }
 .neonbump{
 	border-bottom:solid #2323FF;
+}
+.blinking-text {
+    color: blue;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
 }
